@@ -20,7 +20,45 @@ $(function () {
       if (pwd !== value) return '两次密码不一样'
     },
   })
+  const baseUrl = 'http://www.liulongbin.top:3007'
+  //监听表单提交事件，发送注册请求
   $('#form_reg').submit((e) => {
     e.preventDefault()
+    //发送请求
+    $.ajax({
+      type: 'POST',
+      url: `/api/reguser`,
+      data: {
+        username: $('.reg-box [name=username]').val(),
+        password: $('.reg-box [name=password]').val(),
+      },
+      success: (res) => {
+        console.log(res)
+        if (res.status !== 0) return layer.msg(res.message)
+        layer.msg('注册成功')
+        $('#link_login').click()
+        $('.layui-input').val('')
+        $('#form_reg [.layui-input]').val('')
+      },
+    })
+  })
+  //监听登录按钮，发送登录请求
+  $('#form_login').submit(function (e) {
+    e.preventDefault()
+    console.log($(this).serialize())
+    $.ajax({
+      type: 'POST',
+      url: '/api/login',
+      data: $(this).serialize(),
+      success: function (res) {
+        console.log(res)
+        if (res.status !== 0) return layer.msg(res.message)
+        layer.msg(res.message)
+        //将身份密钥tokeb存在本地存储中
+        localStorage.setItem('tokeb', res.token)
+        //跳转到主页页面
+        location.href = '/index.html'
+      },
+    })
   })
 })
