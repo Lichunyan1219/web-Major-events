@@ -27,7 +27,7 @@ $(function () {
     //发送请求
     $.ajax({
       type: 'POST',
-      url: `/api/reguser`,
+      url: "/my/userinfo",
       data: {
         username: $('.reg-box [name=username]').val(),
         password: $('.reg-box [name=password]').val(),
