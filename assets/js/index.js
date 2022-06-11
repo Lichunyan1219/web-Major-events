@@ -1,17 +1,24 @@
-//获取用户信息
+//获取用户信息S
 function geiUserInfo() {
   $.ajax({
     type: 'GET',
     url: '/my/userinfo',
     headers: {
-      Authorization: localStorage.getItem('tokeb'),
+      Authorization: localStorage.getItem('token'),
     },
     success: function (res) {
       if (res.status !== 0) return layer.msg(res.message)
       layer.msg(res.message)
-      console.log(res)
+      // console.log(res)
       renderAvatar(res.data)
     },
+    // complete:(res)=>{
+    //   console.log(res);
+    //   if(res.responseJSON.status==1 && res.responseJSON.message=="身份认证失败！"){
+    //     localStorage.removeItem('token')
+    //     location.href="/login.html"
+    //   }
+    // }
   })
 }
 geiUserInfo()

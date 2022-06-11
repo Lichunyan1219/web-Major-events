@@ -55,7 +55,7 @@ $(function () {
         if (res.status !== 0) return layer.msg(res.message)
         layer.msg(res.message)
         //将身份密钥tokeb存在本地存储中
-        localStorage.setItem('tokeb', res.token)
+        localStorage.setItem('token', res.token)
         //跳转到主页页面
         location.href = '/index.html'
       },
