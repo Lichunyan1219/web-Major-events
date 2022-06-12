@@ -11,7 +11,7 @@ function geiUserInfo() {
       layer.msg(res.message)
       // console.log(res)
       renderAvatar(res.data)
-      console.log(11);
+      // console.log(11);
     },
     // complete:(res)=>{
     //   console.log(res);
